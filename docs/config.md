@@ -222,9 +222,9 @@ technical:
 | Parameter | Default | Description |
 |---|---|---|
 | `device` | `"cuda"` | `"cpu"`, `"cuda"`, or `"cuda:N"` (e.g. `"cuda:0"`). Falls back to `cuda:0` if the requested index doesn't exist |
-| `max_memory_padding` | `0.95` | Fraction of GPU memory the autobatcher is allowed to fill during calibration. Lower = more headroom, smaller batches |
-| `memory_scaling_factor` | `1.75` | Factor by which the autobatcher grows the probe size during calibration. Larger = faster calibration but coarser final batch size; smaller = slower but tighter. Must be > 1 |
-| `max_atoms_to_try` | `100000` | Upper bound on the autobatcher's calibration probe size (atoms) |
+| `max_memory_padding` | `0.95` | Fraction of free GPU memory a batch may fill, using memory predicted per structure from calibration. Lower = more headroom, smaller batches |
+| `memory_scaling_factor` | `1.75` | Unused in batch mode since memory is calibrated from measured forward passes; still accepted so existing configs load |
+| `max_atoms_to_try` | `100000` | Upper bound on atoms in any calibration forward pass |
 | `steps_between_swaps` | `1` | Optimization steps between batch swaps in the in-flight autobatcher. `1` is fastest on this codebase's screenings (uma-s/uma-m/orb); higher values are monotonically slower |
 | `logging_level` | `"INFO"` | Logging verbosity: `"DEBUG"`, `"INFO"`, `"WARNING"`, `"ERROR"` |
 
